@@ -48,9 +48,6 @@ Q : What is the number that rhymes with the word we use to describe a tall plant
 5. **Response Generation**:
    - 8-bit quantization took substantially longer (19.23s) compared to 4-bit (3.10s) and no quantization (2.59s)
 
-6. **Memory Freeing**:
-   - All configurations efficiently freed GPU memory after task completion
-   - No quantization took slightly longer to free memory (0.22s vs 0.09s for quantized versions)
 
 ## Implications
 
@@ -71,3 +68,21 @@ Q : What is the number that rhymes with the word we use to describe a tall plant
 4. **Model Optimization**: 
    - Investigating the significant performance drop in 8-bit quantization could lead to optimization opportunities
    - Exploring the use of 'flash-attention' package could potentially improve performance across all configurations
+  
+5. **float16 vs bfloat16**:
+   - Loading: bfloat16 loads faster (Probably because default dtype is 'bfloat16').
+   - Generation: bfloat16 is faster 
+   - bfloat16 uses less memory during generation.
+   - Overall speed: bfloat16 is faster for the complete task 
+   - Output quality: Both produce correct answers with slight differences in explanation detail.
+   - Conclusion : bfloat16 is generally preffered 
+
+| Aspect                | bfloat16               | float16              |
+|-----------------------|-----------------------|-----------------------|
+| Loading Time          | 26.8706s              | 29.7633s              |
+| Generation Time       | 8.8076s               | 9.1157s               |
+| Total Execution Time  | 36.1877s              | 39.5058s              |
+| System RAM Increase   | 516.57 MB             | 770.45 MB             |
+| Process RAM Increase  | 508.16 MB             | 684.15 MB             |
+| Initial GPU Memory    | 7288.38 MB            | 7288.38 MB            |
+| Peak GPU Memory       | 7349.64 MB            | 7354.21 MB            |
