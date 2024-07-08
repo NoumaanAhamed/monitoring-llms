@@ -4,36 +4,6 @@ import time
 import psutil
 from functools import wraps
 
-# def get_gpu_memory():
-#     return torch.cuda.memory_allocated() / 1024**2  # Convert to MB
-
-# def get_gpu_max_memory():
-#     return torch.cuda.max_memory_allocated() / 1024**2  # Convert to MB
-
-# def get_system_memory_usage():
-#     memory = psutil.virtual_memory()
-#     return memory.used / (1024 * 1024)  # Convert to MB
-
-# def format_memory(memory_mb):
-#     if memory_mb >= 1024:
-#         return f"{memory_mb/1024:.2f} GB"
-#     else:
-#         return f"{memory_mb:.2f} MB"
-
-# print("SYS:",get_system_memory_usage())
-
-# def get_process_memory_usage():
-#     process = psutil.Process()
-#     return process.memory_info().rss / (1024 * 1024)  # Convert to MB
-
-# print("PROC:",get_process_memory_usage())
-
-import torch
-import gc
-import time
-import psutil
-from functools import wraps
-
 def get_gpu_memory():
     return torch.cuda.memory_allocated() / 1024**2  # Convert to MB
 

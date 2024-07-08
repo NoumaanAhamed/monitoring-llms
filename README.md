@@ -1,6 +1,6 @@
 ## Requirements: 
 
-torch,transformers,accelerate,memory-profiler,matplotlib,line-profiler,bitsandbytes,pynvml,huggingface-hub
+torch,transformers,accelerate,memory-profiler,matplotlib,line-profiler,bitsandbytes,pynvml,huggingface-hub,
 flash_attn ( optional )
 
 ## Monitoring:

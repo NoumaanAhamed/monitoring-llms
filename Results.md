@@ -1,19 +1,21 @@
 # Comprehensive Comparison of Phi-3-mini-128k-instruct Model Configurations
 
+Q : What is the number that rhymes with the word we use to describe a tall plant? A : Three
+
 | Parameter                   | 8-bit Quantization | 4-bit Quantization | No Quantization |
 |-----------------------------|---------------------|---------------------|-----------------|
 | Total Execution Time        | 28.48 seconds       | 8.61 seconds        | 7.63 seconds    |
 | Model Loading Time          | 7.24 seconds        | 3.51 seconds        | 2.87 seconds    |
 | Response Generation Time    | 19.23 seconds       | 3.10 seconds        | 2.59 seconds    |
 | Memory Freeing Time         | 0.09 seconds        | 0.09 seconds        | 0.22 seconds    |
+| GPU Memory Increase         | 3877.68 MB          | 2324.63 MB          | 7288.38 MB      |
 | Peak GPU Memory             | 3877.68 MB          | 2332.77 MB          | 7296.52 MB      |
+| Initial System RAM          | 1161.49 MB          | 1164.47 MB          | 1164.63 MB      |
+| Initial Process RAM         | 386.92 MB           | 389.64 MB           | 389.68 MB       |
 | Final System RAM            | 1913.28 MB          | 1696.14 MB          | 1701.95 MB      |
 | Final Process RAM           | 1187.52 MB          | 965.97 MB           | 949.45 MB       |
 | System RAM Increase         | 751.79 MB           | 531.66 MB           | 537.32 MB       |
 | Process RAM Increase        | 800.59 MB           | 576.33 MB           | 559.77 MB       |
-| Initial System RAM          | 1161.49 MB          | 1164.47 MB          | 1164.63 MB      |
-| Initial Process RAM         | 386.92 MB           | 389.64 MB           | 389.68 MB       |
-| GPU Memory Increase         | 3877.68 MB          | 2324.63 MB          | 7288.38 MB      |
 | Response Quality            | Incorrect, verbose  | Incorrect, concise  | Incorrect, concise |
 | Answer Correctness          | Recognized wordplay | Incorrect ("half")  | Incomplete ("walk") |
 | Response Length             | Long                | Short               | Short           |
@@ -46,9 +48,6 @@
 5. **Response Generation**:
    - 8-bit quantization took substantially longer (19.23s) compared to 4-bit (3.10s) and no quantization (2.59s)
 
-6. **Memory Freeing**:
-   - All configurations efficiently freed GPU memory after task completion
-   - No quantization took slightly longer to free memory (0.22s vs 0.09s for quantized versions)
 
 ## Implications
 
@@ -69,3 +68,21 @@
 4. **Model Optimization**: 
    - Investigating the significant performance drop in 8-bit quantization could lead to optimization opportunities
    - Exploring the use of 'flash-attention' package could potentially improve performance across all configurations
+  
+5. **float16 vs bfloat16**:
+   - Loading: bfloat16 loads faster (Probably because default dtype is 'bfloat16').
+   - Generation: bfloat16 is faster 
+   - bfloat16 uses less memory during generation.
+   - Overall speed: bfloat16 is faster for the complete task 
+   - Output quality: Both produce correct answers with slight differences in explanation detail.
+   - Conclusion : bfloat16 is generally preffered 
+
+| Aspect                | bfloat16               | float16              |
+|-----------------------|-----------------------|-----------------------|
+| Loading Time          | 26.8706s              | 29.7633s              |
+| Generation Time       | 8.8076s               | 9.1157s               |
+| Total Execution Time  | 36.1877s              | 39.5058s              |
+| System RAM Increase   | 516.57 MB             | 770.45 MB             |
+| Process RAM Increase  | 508.16 MB             | 684.15 MB             |
+| Initial GPU Memory    | 7288.38 MB            | 7288.38 MB            |
+| Peak GPU Memory       | 7349.64 MB            | 7354.21 MB            |
