@@ -23,7 +23,6 @@ model = AutoModelForCausalLM.from_pretrained(
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 
 
-
 hf_username = "Noumaan"
 repo_name = "phi3-mini-128k-instruct-4bit-quantized"
 

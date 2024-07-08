@@ -3,7 +3,7 @@ import gc
 import time
 import psutil
 from functools import wraps
-from transformers import AutoModelForCausalLM, AutoTokenizer, pipeline, BitsAndBytesConfig
+from transformers import pipeline, BitsAndBytesConfig
 from utils import track_resources
 
 class ModelManager:
