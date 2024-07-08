@@ -1,19 +1,21 @@
 # Comprehensive Comparison of Phi-3-mini-128k-instruct Model Configurations
 
+Q : What is the number that rhymes with the word we use to describe a tall plant? A : Three
+
 | Parameter                   | 8-bit Quantization | 4-bit Quantization | No Quantization |
 |-----------------------------|---------------------|---------------------|-----------------|
 | Total Execution Time        | 28.48 seconds       | 8.61 seconds        | 7.63 seconds    |
 | Model Loading Time          | 7.24 seconds        | 3.51 seconds        | 2.87 seconds    |
 | Response Generation Time    | 19.23 seconds       | 3.10 seconds        | 2.59 seconds    |
 | Memory Freeing Time         | 0.09 seconds        | 0.09 seconds        | 0.22 seconds    |
+| GPU Memory Increase         | 3877.68 MB          | 2324.63 MB          | 7288.38 MB      |
 | Peak GPU Memory             | 3877.68 MB          | 2332.77 MB          | 7296.52 MB      |
+| Initial System RAM          | 1161.49 MB          | 1164.47 MB          | 1164.63 MB      |
+| Initial Process RAM         | 386.92 MB           | 389.64 MB           | 389.68 MB       |
 | Final System RAM            | 1913.28 MB          | 1696.14 MB          | 1701.95 MB      |
 | Final Process RAM           | 1187.52 MB          | 965.97 MB           | 949.45 MB       |
 | System RAM Increase         | 751.79 MB           | 531.66 MB           | 537.32 MB       |
 | Process RAM Increase        | 800.59 MB           | 576.33 MB           | 559.77 MB       |
-| Initial System RAM          | 1161.49 MB          | 1164.47 MB          | 1164.63 MB      |
-| Initial Process RAM         | 386.92 MB           | 389.64 MB           | 389.68 MB       |
-| GPU Memory Increase         | 3877.68 MB          | 2324.63 MB          | 7288.38 MB      |
 | Response Quality            | Incorrect, verbose  | Incorrect, concise  | Incorrect, concise |
 | Answer Correctness          | Recognized wordplay | Incorrect ("half")  | Incomplete ("walk") |
 | Response Length             | Long                | Short               | Short           |
